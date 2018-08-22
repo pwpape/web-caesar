@@ -5,8 +5,16 @@ app = Flask(__name__)
 
 app.config['DEBUG'] = True
 
-@app.route("/", methods=["GET"])
-def home():
-    return render_template("body.html")
+item_list = []
+
+@app.route("/")
+def add_item():
+    item = request.args.get("theinput")
+    item_list.append(item)
+    return render_template("body.html", list=item_list)
+
+
+
+
 
 app.run()
